@@ -107,3 +107,37 @@ nav ul li a.active {
         gap: 1rem;
     }
 }
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 10%;
+  background-color: #00b49d; /* match the teal background */
+  color: white;
+}
+
+.hero .content {
+  max-width: 50%;
+}
+
+.hero .image img {
+  width: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero .content, .hero .image {
+    max-width: 100%;
+  }
+
+  .hero .image img {
+    width: 250px;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services - DoctoR ApoL</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">Docto<span>rApoL</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="Expertise.html">Expertise</a></li>
+        <li><a href="Services offer.html">Services offer</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Experience</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      color: #333;
+      position: relative;
+      z-index: 1;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('bgA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00b894;
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      color: #2d3436;
+      border-left: 6px solid #00b894;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    .service-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .service-list li {
+      background: #fff;
+      margin-bottom: 12px;
+      padding: 15px 20px;
+      border-left: 4px solid #00b894;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .service-list ul {
+      margin-top: 8px;
+      padding-left: 20px;
+      font-size: 0.95em;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #00b894;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Professional Services Offered</h1>
+
+  <div class="section">
+    <h2>📱 Mobile Hardware Repair & Diagnostics</h2>
+    <ul class="service-list">
+      <li><strong>Apple Device Repair:</strong> Logic board repair, BGA rework, no power/display issues, charging faults</li>
+      <li><strong>Advanced Troubleshooting:</strong> Short detection, CPU/PMIC faults, microscope-based soldering</li>
+      <li><strong>Tools:</strong> Oscilloscope, Multimeter, ZXW Tools, Boardview, Microscope</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🔧 Software Repair & Unlock Services</h2>
+    <ul class="service-list">
+      <li><strong>Android Software Repair:</strong>
+        <ul>
+          <li>FRP unlock, flashing, boot fix, IMEI repair</li>
+          <li>Tools: UnlockTool, Hydra, UMT, Octoplus, Chimera</li>
+        </ul>
+      </li>
+      <li><strong>Apple iOS Services:</strong>
+        <ul>
+          <li>iCloud bypass, DFU restore, iOS error fix</li>
+          <li>Tools: 3uTools, Checkra1n, iRemove Pro, Fixppo</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🎨 Creative & Digital Design</h2>
+    <ul class="service-list">
+      <li><strong>Photography:</strong> Event, portrait, product photography — DSLR + editing (Lightroom, Snapseed)</li>
+      <li><strong>Graphic Design:</strong> Logos, posters, social content (Photoshop, Canva, Photopea)</li>
+      <li><strong>Web Design:</strong> Portfolio & landing pages (HTML, CSS, Bootstrap, WordPress)</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>💻 Web & IT Solutions</h2>
+    <ul class="service-list">
+      <li><strong>Website Building:</strong> Front-end design, responsive layout</li>
+      <li><strong>Basic Coding:</strong> HTML5, CSS3, JS, PHP (basic)</li>
+      <li><strong>Hosting Setup:</strong> GitHub, domain pointing, SEO tuning</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+</body>
+</html>

@@ -4,24 +4,81 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About - Romer S. Rioja</title>
-  <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Raleway', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      position: relative;
+      z-index: 1;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('bgA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    main {
+      padding: 120px 5% 40px;
+    }
+
+    #about {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    #about h2 {
+      color: #00b894;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px;
+      text-decoration: none;
+      color: #00b894;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="logo">Free<span>lancer</span></div>
+    <div class="logo">Docto<span>rApoL</span></div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active">About</a></li>
-        <li><a href="#">Services</a></li>
+        <li><a href="Expertise.html">Expertise</a></li>
         <li><a href="#">Portfolio</a></li>
         <li><a href="#">Experience</a></li>
       </ul>
     </nav>
   </header>
 
-  <main style="padding: 120px 5% 40px;">
+  <main>
     <section id="about">
       <h2>ABOUT ME</h2>
       <p>
@@ -35,6 +92,7 @@
       </p>
     </section>
   </main>
+
+  <a href="index.html" class="btn">← Back to Home</a>
 </body>
 </html>
-<a href="index.html" class="btn">← Back to Home</a>

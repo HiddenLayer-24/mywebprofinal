@@ -107,3 +107,20 @@ nav ul li a.active {
         gap: 1rem;
     }
 }
+.image img.profile-pic {
+  width: 350px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image img.profile-pic {
+    width: 250px;
+    margin-top: 20px;
+  }
+}

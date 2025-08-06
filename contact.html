@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact</title>
   <style>
+<script>
+  const root = document.documentElement;
+  const saved = JSON.parse(localStorage.getItem("userSettings")) || {};
+  for (const key in saved) {
+    root.style.setProperty(`--${key}`, saved[key]);
+  }
+</script>
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -66,9 +74,25 @@
       color: #fff;
       text-align: center;
     }
+
+    /* Matrix Canvas */
+    #matrixCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 10000;
+      background: black;
+      pointer-events: none;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
   </style>
 </head>
 <body>
+  <canvas id="matrixCanvas"></canvas>
 
   <header>
     <h1>Contact Me</h1>
@@ -79,8 +103,6 @@
       <input type="text" name="name" placeholder="Your Name" required />
       <input type="email" name="_replyto" placeholder="Your Email" required />
       <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-      <!-- Optional: redirect to thank-you page -->
-      <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html" /> -->
       <button type="submit">Send Message</button>
     </form>
 
@@ -91,10 +113,82 @@
       <a href="https://linkedin.com" target="_blank">LinkedIn</a>
     </div>
   </main>
-
-  <footer>
+<div style="text-align: center;">
+  <a href="index.html" class="btn">← Back to Home</a>
+</div>
+ <footer>
     &copy; 2025 Doctorapol. All rights reserved.
   </footer>
 
+  <script>
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const letters = "アァイィウヴエカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 14;
+    let columns, drops;
+
+    function setupMatrix() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = new Array(columns).fill(1);
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    let interval;
+
+    function playMatrixAndGo(nextPage) {
+      resizeCanvas();
+      setupMatrix();
+      canvas.style.display = "block";
+      canvas.style.opacity = "1";
+      interval = setInterval(drawMatrix, 50);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        canvas.style.opacity = "0";
+      }, 1200);
+
+      setTimeout(() => {
+        canvas.style.display = "none";
+        window.location.href = nextPage;
+      }, 1500);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setupMatrix();
+      document.querySelectorAll("a[href]").forEach(link => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (!href || href.startsWith("mailto:") || href.startsWith("#") || this.target === "_blank") return;
+          e.preventDefault();
+          playMatrixAndGo(href);
+        });
+      });
+    });
+  </script>
 </body>
-</html>
+</html
+    

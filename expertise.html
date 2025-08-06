@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Romer S. Rioja</title>
+  <link rel="stylesheet" href="style.css" />
+</head><script>
+  const root = document.documentElement;
+  const saved = JSON.parse(localStorage.getItem("userSettings")) || {};
+  for (const key in saved) {
+    root.style.setProperty(`--${key}`, saved[key]);
+  }
+</script>
+
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <div class="container">
+   <header>
+    <div class="logo">Docto<span>rApoL</span></div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="Expertise.html">Expertise</a></li>
+        <li><a href="Services offer.html">Services offer</a></li>
+        <li><a href="settings.html">Custom settings</a></li>
+      </ul>
+    </nav>
+  </header>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expertise</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      color: #333;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    
+    main {
+      padding: 120px 5% 40px;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('bgA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 1.0;
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1E3FD4;
+      margin-bottom: 40px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      color: #2d3436;
+      border-bottom: 2px solid #00b894;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
+
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skill-list li {
+      background: #fff;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-left: 4px solid #00b894;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .skill-list ul {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding-left: 20px;
+      font-size: 0.95em;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #00b894;
+    }
+
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Technical Expertise</h1>
+
+  <!-- Hardware Technical Expertise -->
+  <div class="section">
+    <h2>Hardware Repair & Diagnostics</h2>
+    <ul class="skill-list">
+      <li><strong>Apple Device Repair Specialist:</strong> iPhone, iPad, and MacBook logic board diagnosis, microsoldering, and power line analysis</li>
+      <li><strong>Component-Level Troubleshooting:</strong> Short detection, IC/PMIC replacement, jumper techniques, baseband and charging circuit repairs</li>
+      <li><strong>Diagnostic Tools Mastery:</strong>
+        <ul>
+          <li>Digital Multimeter (Fluke, DT9205A)</li>
+          <li>Oscilloscope (waveform analysis and signal tracing)</li>
+          <li>Binocular Microscope (precision soldering and inspection)</li>
+          <li>Schematic Readers: ZXW Tools, Wuxinji, BoardView, PDF circuit diagrams</li>
+        </ul>
+      </li>
+      <li><strong>Proficient in complex fault diagnosis:</strong> No Power, No Display, No Charging, No Touch, Boot Loop issues</li>
+    </ul>
+  </div>
+
+  <!-- Software Repair -->
+  <div class="section">
+    <h2>Software Troubleshooting</h2>
+    <ul class="skill-list">
+      <li><strong>Universal Android Repair:</strong>
+        <ul>
+          <li>Flashing, FRP Unlock, IMEI Repair, Bootloader Fix</li>
+          <li>Tools Used: UnlockTool, Hydra Tool, UMT, Octoplus, Chimera, QFIL</li>
+        </ul>
+      </li>
+      <li><strong>Advanced Apple iOS Software Solutions:</strong>
+        <ul>
+          <li>iCloud Bypass, DFU Mode Recovery, iOS Error Fixing</li>
+          <li>Tools Used: Checkra1n, 3uTools, iRemove Pro, Tenorshare ReiBoot, iMyFone Fixppo</li>
+        </ul>
+      </li>
+      <li><strong>System Optimization & Recovery:</strong> Data retrieval, iTunes restoration, iOS and Android system tuning</li>
+    </ul>
+  </div>
+
+  <!-- Creative Skills -->
+  <div class="section">
+    <h2>Creative & Design Skills</h2>
+    <ul class="skill-list">
+      <li><strong>Photography:</strong> Expert in portrait, product, and event photography using DSLR and mobile; skilled in Adobe Lightroom and Snapseed</li>
+      <li><strong>Graphic Design:</strong> Logo design, flyers, social media content using Photoshop, Canva, and Photopea</li>
+      <li><strong>Web Design:</strong> Custom landing pages and portfolios using HTML, CSS, Bootstrap, and WordPress (Elementor, Divi)</li>
+    </ul>
+  </div>
+
+  <!-- Web & IT Skills -->
+  <div class="section">
+    <h2>Web & IT Skills</h2>
+    <ul class="skill-list">
+      <li>HTML5, CSS3, Bootstrap</li>
+      <li>JavaScript, jQuery</li>
+      <li>PHP (basic), Laravel (introductory)</li>
+      <li>MySQL & Database Management</li>
+      <li>Git & GitHub Version Control</li>
+      <li>Responsive Web Design & Deployment</li>
+      <li>Basic SEO Optimization & Page Speed Tuning</li>
+      <li>Basic Python and Shell Scripting</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+</body>
+</html>
+
+<script>
+  const canvas = document.getElementById('matrixCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const letters = "アァイィウヴエカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 14;
+  let columns, drops;
+
+  function setupMatrix() {
+    columns = Math.floor(canvas.width / fontSize);
+    drops = new Array(columns).fill(1);
+  }
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0F0";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  let interval;
+
+  function playMatrixAndGo(nextPage) {
+    resizeCanvas();
+    setupMatrix();
+    canvas.style.display = "block";
+    canvas.style.opacity = "1";
+    interval = setInterval(drawMatrix, 50);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      canvas.style.opacity = "0";
+    }, 1200);
+
+    setTimeout(() => {
+      canvas.style.display = "none";
+      window.location.href = nextPage;
+    }, 1500);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setupMatrix();
+    document.querySelectorAll("a[href]").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (!href || href.startsWith("mailto:") || href.startsWith("#") || this.target === "_blank") return;
+        e.preventDefault();
+        playMatrixAndGo(href);
+      });
+    });
+  });
+</script>
+
+</body>

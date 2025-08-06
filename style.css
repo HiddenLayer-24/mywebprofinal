@@ -1,3 +1,15 @@
+:root {
+  --bg-opacity: 0.6;
+  --bg-color: 0, 0, 0;
+  --font-size: 16px;
+  --text-color: #ffffff;
+}
+
+body {
+  background-color: rgba(var(--bg-color), var(--bg-opacity));
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
 /* Reset all default browser spacing */
 * {
   margin: 0;
@@ -167,4 +179,21 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn:hover {
   background-color: #019875;
+}
+
+
+#matrixCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background: black;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.transparent-text {
+  color: rgba(255, 255, 255, 0.5); /* white with 50% opacity */
 }

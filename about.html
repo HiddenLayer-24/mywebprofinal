@@ -5,30 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Romer S. Rioja</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-  <header>
-    <div class="logo">Docto<span>rApoL</span></div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="Expertise.html">Expertise</a></li>
-        <li><a href="Services offer.html">Services offer</a></li>
-        <li><a href="#">Pricing</a></li>
-        <li><a href="#">Experience</a></li>
-      </ul>
-    </nav>
-  </header>
+  <script>
+  const root = document.documentElement;
+  const saved = JSON.parse(localStorage.getItem("userSettings")) || {};
+  for (const key in saved) {
+    root.style.setProperty(`--${key}`, saved[key]);
+  }
+</script>
+
   <style>
     body {
       font-family: 'Raleway', sans-serif;
       margin: 0;
       padding: 0;
       color: #333;
-      position: relative;
-      z-index: 1;
     }
 
     body::before {
@@ -42,8 +32,8 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.7;
-      z-index: -1;
+      opacity: 1.0;
+      z-index: -2;
     }
 
     #about {
@@ -63,7 +53,7 @@
 
     .btn {
       display: inline-block;
-      margin: 20px;
+      margin: 20px auto;
       text-decoration: none;
       color: #00b894;
       font-weight: bold;
@@ -72,23 +62,135 @@
     .btn:hover {
       text-decoration: underline;
     }
+
+    #matrixCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: black;
+      pointer-events: none;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    header, main, .btn {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+    }
   </style>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
 
-  <main>
-    <section id="about">
-      <h2>ABOUT ME</h2>
-      <p>
-        I am <strong>Romer S. Rioja</strong>, a Senior Hardware-Software Engineer with over a decade of hands-on experience in mobile, computer, and CCTV technologies. From advanced component-level repair to AI-driven system architecture, my expertise spans both hardware diagnostics and smart software integration.
-      </p>
-      <p>
-        I’ve held key roles across the Philippines, Riyadh, and Dubai — including Head Level 3 Technician and business owner — leading technical teams and delivering high-reliability solutions. My work reflects a strong foundation in schematic analysis, IC/CPU/BGA-level repairs, and the design of intelligent systems.
-      </p>
-      <p>
-        Based in Olongapo City, I continue to provide repair services, consult on AI prompt engineering, and explore innovations in smart tech and surveillance systems.
-      </p>
-    </section>
-  </main>
+  <div class="container">
+    <header>
+      <div class="logo">Docto<span>rApoL</span></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="Expertise.html">Expertise</a></li>
+          <li><a href="Services offer.html">Services offer</a></li>
+          <li><a href="settings.html">Custom settings</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <a href="index.html" class="btn">← Back to Home</a>
+    <main>
+      <section id="about">
+        <h2>ABOUT ME</h2>
+        <p>
+          I am <strong>Romer S. Rioja</strong>, a Senior Hardware-Software Engineer with over a decade of hands-on experience in mobile, computer, and CCTV technologies. From advanced component-level repair to AI-driven system architecture, my expertise spans both hardware diagnostics and smart software integration.
+        </p>
+        <p>
+          I’ve held key roles across the Philippines, Riyadh, and Dubai — including Head Level 3 Technician and business owner — leading technical teams and delivering high-reliability solutions. My work reflects a strong foundation in schematic analysis, IC/CPU/BGA-level repairs, and the design of intelligent systems.
+        </p>
+        <p>
+          Based in Olongapo City, I continue to provide repair services, consult on AI prompt engineering, and explore innovations in smart tech and surveillance systems.
+        </p>
+      </section>
+    </main>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('matrixCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const letters = "アァイィウヴエカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 14;
+    let columns, drops;
+
+    function setupMatrix() {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = new Array(columns).fill(1);
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    let interval;
+
+    function playMatrixAndGo(nextPage) {
+      canvas.style.zIndex = "10000";
+      canvas.style.opacity = "1";
+      interval = setInterval(drawMatrix, 50);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        canvas.style.opacity = "0";
+      }, 1200);
+
+      setTimeout(() => {
+        canvas.style.zIndex = "-1";
+        window.location.href = nextPage;
+      }, 1500);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setupMatrix();
+      document.querySelectorAll("a[href]").forEach(link => {
+        link.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (!href || href.startsWith("mailto:") || href.startsWith("#") || this.target === "_blank") return;
+          e.preventDefault();
+          playMatrixAndGo(href);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

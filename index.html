@@ -5,8 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Romer S. Riojar</title>
   <link rel="stylesheet" href="style.css" />
+<script>
+  const root = document.documentElement;
+  const saved = JSON.parse(localStorage.getItem("userSettings")) || {};
+  for (const key in saved) {
+    root.style.setProperty(`--${key}`, saved[key]);
+  }
+</script>
+
 </head>
 <body>
+  <canvas id="matrixCanvas"></canvas>
   <div class="container">
   <header>
     <div class="logo">Docto<span>rApoL</span></div>
@@ -16,8 +25,7 @@
         <li><a href="about.html">About</a></li>
         <li><a href="Expertise.html">Expertise</a></li>
         <li><a href="Services offer.html">Services offer</a></li>
-        <li><a href="#">Pricing</a></li>
-        <li><a href="#">Experience</a></li>
+        <li><a href="settings.html">Custom settings</a></li>
       </ul>
     </nav>
   </header>
@@ -27,11 +35,86 @@
       <h3>Hello I'm</h3>
       <h1>Romer S.Rioja</h1>
        <p>Freelance Web developer and designer, Ai and software tools Architech,Electronics and mobile specialist.</p>
-     <button class="btn">Hire Me</button>
-  </div>
+     <a href="contact.html" class="btn">Hire Me</a>
+ </div>
     <div class="right">
       <img src="freelancer.jpeg" alt="Freelancer">
     </div>
   </main>
 </body>
 </html>
+
+<script>
+  const canvas = document.getElementById('matrixCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const letters = "アァイィウヴエカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const fontSize = 14;
+  let columns, drops;
+
+  function setupMatrix() {
+    columns = Math.floor(canvas.width / fontSize);
+    drops = new Array(columns).fill(1);
+  }
+
+  function drawMatrix() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0F0";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  let interval;
+
+  function playMatrixAndGo(nextPage) {
+    resizeCanvas();
+    setupMatrix();
+    canvas.style.display = "block";
+    canvas.style.opacity = "1";
+    interval = setInterval(drawMatrix, 50);
+
+    setTimeout(() => {
+      clearInterval(interval);
+      canvas.style.opacity = "0";
+    }, 1200);
+
+    setTimeout(() => {
+      canvas.style.display = "none";
+      window.location.href = nextPage;
+    }, 1500);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    setupMatrix();
+    document.querySelectorAll("a[href]").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (!href || href.startsWith("mailto:") || href.startsWith("#") || this.target === "_blank") return;
+        e.preventDefault();
+        playMatrixAndGo(href);
+      });
+    });
+  });
+</script>
+
+</body>
+
+
+

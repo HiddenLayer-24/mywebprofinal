@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Settings</title>
+  <style>
+    :root {
+      --bg-opacity: 0.6;
+      --bg-color: 0, 0, 0;
+      --font-size: 16px;
+      --text-color: #ffffff;
+    }
+
+    body {
+      background-color: rgba(var(--bg-color), var(--bg-opacity));
+      font-size: var(--font-size);
+      color: var(--text-color);
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #111;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+    }
+
+    input[type="range"],
+    input[type="color"] {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .form-group {
+      background: #1e1e1e;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      color: #00b894;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Customize Appearance</h2>
+
+  <div class="form-group">
+    <label>Background Opacity
+      <input type="range" min="0" max="1" step="0.01" id="bgOpacity" value="0.6">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Font Size
+      <input type="range" min="12" max="36" step="1" id="fontSize" value="16">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Background Color
+      <input type="color" id="bgColor" value="#000000">
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label>Text Color
+      <input type="color" id="textColor" value="#ffffff">
+    </label>
+  </div>
+
+<script>
+  const root = document.documentElement;
+
+  // Load saved settings
+  window.onload = () => {
+    const saved = JSON.parse(localStorage.getItem("userSettings")) || {};
+    for (const key in saved) {
+      root.style.setProperty(`--${key}`, saved[key]);
+
+      // Update input values
+      if (key === "bg-color") document.getElementById("bgColor").value = rgbToHex(saved[key]);
+      if (key === "text-color") document.getElementById("textColor").value = saved[key];
+      if (key === "bg-opacity") document.getElementById("bgOpacity").value = saved[key];
+      if (key === "font-size") document.getElementById("fontSize").value = saved[key].replace("px", "");
+    }
+  };
+
+  // Save setting and apply
+  function updateSetting(key, value) {
+    root.style.setProperty(`--${key}`, value);
+    const current = JSON.parse(localStorage.getItem("userSettings")) || {};
+    current[key] = value;
+    localStorage.setItem("userSettings", JSON.stringify(current));
+  }
+
+  // Event listeners
+  document.getElementById('bgOpacity').oninput = e => updateSetting("bg-opacity", e.target.value);
+  document.getElementById('fontSize').oninput = e => updateSetting("font-size", e.target.value + "px");
+  document.getElementById('bgColor').oninput = e => {
+    const rgb = hexToRgb(e.target.value);
+    updateSetting("bg-color", rgb);
+  };
+  document.getElementById('textColor').oninput = e => updateSetting("text-color", e.target.value);
+
+  // Converters
+  function hexToRgb(hex) {
+    hex = hex.replace('#', '');
+    const bigint = parseInt(hex, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `${r}, ${g}, ${b}`;
+  }
+
+  function rgbToHex(rgb) {
+    const [r, g, b] = rgb.split(',').map(Number);
+    return "#" + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+  }
+</script>
+
+
+</body>
+<div style="text-align: center;">
+      <a href="index.html" class="btn">← Back to Home</a>
+    </div>
+</html>
